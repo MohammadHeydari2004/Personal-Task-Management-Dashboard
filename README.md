@@ -1,78 +1,82 @@
-# React + TypeScript + Vite
+# داشبورد مدیریت وظایف شخصی
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+یک اپلیکیشن تک‌صفحه‌ای (SPA) برای مدیریت وظایف روزانه با تمرکز بر تایپ‌سیفتی، دسترس‌پذیری و طراحی واکنش‌گرا. این پروژه فاقد بک‌اند است و داده‌ها صرفاً در حافظه رم نگه‌داری می‌شوند.
 
-Currently, two official plugins are available:
+## فناوری‌ها
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **فریم‌ورک:** React 19 با TypeScript 6 (حالت Strict)
+- **ابزار ساخت:** Vite 8
+- **استایل:** Tailwind CSS v4
+- **مسیریابی:** React Router DOM v7
+- **کامپایلر:** React Compiler (Babel)
+- **Linting:** ESLint 10 + OxLint
 
-## React Compiler
+## ویژگی‌های اصلی
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- ایجاد، ویرایش، حذف و تغییر وضعیت وظایف
+- فیلتر ترکیبی بر اساس وضعیت و اولویت
+- جست‌وجوی هم‌زمان در عنوان و توضیحات
+- مرتب‌سازی بر اساس تاریخ سررسید یا اولویت
+- محاسبه آمار به صورت مشتق‌شده از داده‌ها
+- مسیریابی کلاینتی با صفحه جزئیات اختصاصی
+- مودال دسترس‌پذیر با مدیریت کامل فوکوس
+- پشتیبانی از حالت تاریک و چیدمان واکنش‌گرا
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## شروع سریع
 
-## Expanding the ESLint configuration
+### پیش‌نیازها
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js نسخه 20 یا بالاتر
+- npm نسخه 10 یا بالاتر
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### نصب و اجرا
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# نصب وابستگی‌ها
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# اجرای محیط توسعه
+npm run dev
 
+# ساخت نسخه پروداکشن
+npm run build
+
+# پیش‌نمایش نسخه پروداکشن
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## دستورات موجود
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| دستور                | توضیحات                                    |
+| -------------------- | ------------------------------------------ |
+| `npm run dev`        | اجرای سرور توسعه با HMR                    |
+| `npm run build`      | بررسی تایپ‌ها و ساخت نسخه نهایی            |
+| `npm run preview`    | اجرای سرور پیش‌نمایش نسخه پروداکشن         |
+| `npm run type-check` | بررسی صحت تایپ‌ها بدون تولید خروجی         |
+| `npm run lint`       | بررسی کیفیت کد با ESLint                   |
+| `npm run lint:ox`    | بررسی کیفیت کد با OxLint                   |
+| `npm run check`      | اجرای تمامی بررسی‌های بالا به صورت هم‌زمان |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ساختار پروژه
 
 ```
+src/
+├── components/        # کامپوننت‌های رابط کاربری
+│   ├── layout/        # چیدمان اصلی (AppLayout, Header)
+│   ├── tasks/         # کامپوننت‌های تجاری وظایف
+│   └── ui/            # کامپوننت‌های پایه (Button, Modal, Input)
+├── constants/         # ثابت‌ها و برچسب‌های فارسی
+├── data/              # داده‌های آزمایشی (Seed)
+├── hooks/             # هوک‌های سفارشی
+├── pages/             # صفحات اپلیکیشن
+├── routes/            # پیکربندی مسیرها
+├── styles/            # فایل‌های استایل
+├── types/             # تعاریف تایپ و اینترفیس‌ها
+└── utils/             # توابع کمکی خالص
+```
+
+## معماری داده‌ها
+
+- **اتحادهای محدود (Literal Unions):** برای `Priority` و `TaskStatus` جهت جلوگیری از حالت‌های نامعتبر
+- **اتحاد متمایز (Discriminated Union):** برای مدیریت حالت مودال با `Type Narrowing`
+- **تایپ‌های کمکی (Utility Types):** استفاده از `Omit` برای جداسازی تایپ فرم از مدل دامنه
