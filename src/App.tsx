@@ -1,10 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
+import { TaskProvider } from "./contexts/TaskProvider";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <BrowserRouter>
-      <AppRoutes></AppRoutes>
+      <TaskProvider>
+        <AppRoutes />
+      </TaskProvider>
     </BrowserRouter>
   );
 }
