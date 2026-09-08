@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import PageContainer from "../components/layout/PageContainer";
-import BackButton from "../components/ui/BackButton";
+import BackButton from "../components/ui/Button";
 
 function TaskDetailsPage() {
   const { taskId } = useParams<{ taskId: string }>();

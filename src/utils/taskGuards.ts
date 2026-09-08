@@ -4,12 +4,10 @@ const VALID_PRIORITIES: Priority[] = ["low", "medium", "high"];
 const VALID_STATUSES: TaskStatus[] = ["planned", "in-progress", "completed"];
 
 export function taskGuard(task: unknown): task is Task {
-  // لایه اول: بررسی شیء بودن (نه null، نه آرایه)
   if (task === null || typeof task !== "object" || Array.isArray(task)) {
     return false;
   }
 
-  // لایه دوم: بررسی وجود تمام کلیدهای ضروری
   if (
     !("id" in task) ||
     !("title" in task) ||
@@ -22,7 +20,6 @@ export function taskGuard(task: unknown): task is Task {
     return false;
   }
 
-  // لایه سوم: بررسی نوع فیلدهای رشته‌ای
   if (
     typeof task.id !== "string" ||
     typeof task.title !== "string" ||
@@ -31,7 +28,6 @@ export function taskGuard(task: unknown): task is Task {
     return false;
   }
 
-  // لایه چهارم: بررسی مقادیر مجاز برای اولویت و وضعیت
   if (
     !VALID_PRIORITIES.includes(task.priority as Priority) ||
     !VALID_STATUSES.includes(task.status as TaskStatus)
@@ -39,11 +35,9 @@ export function taskGuard(task: unknown): task is Task {
     return false;
   }
 
-  // لایه پنجم: بررسی فیلدهای تاریخ
   if (!(task.dueDate instanceof Date) || !(task.creationDate instanceof Date)) {
     return false;
   }
 
-  // تمام بررسی‌ها موفقیت‌آمیز بود
   return true;
 }

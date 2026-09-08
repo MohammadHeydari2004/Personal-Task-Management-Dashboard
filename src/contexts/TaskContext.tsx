@@ -2,11 +2,9 @@ import { createContext } from "react";
 import type { Task, TaskFormData, TaskId, TaskStatus } from "../types/task";
 
 interface TaskContextValue {
-  // داده‌ها
   tasks: Task[];
   getTaskById: (id: TaskId) => Task | undefined;
 
-  // عملیات‌ها
   createTask: (formData: TaskFormData) => void;
   updateTask: (id: TaskId, formData: TaskFormData) => void;
   deleteTask: (id: TaskId) => void;

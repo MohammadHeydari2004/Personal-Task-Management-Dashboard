@@ -17,12 +17,10 @@ export function sortByPriority(tasks: Task[], sortOrder: SortOrder): Task[] {
     const priorityB = PRIORITY_ORDER[b.priority];
     const priorityDiff = priorityA - priorityB;
 
-    // اگر اولویت‌ها متفاوت هستند، بر اساس اولویت مرتب کن
     if (priorityDiff !== 0) {
       return direction * priorityDiff;
     }
 
-    // اگر اولویت‌ها برابر هستند، بر اساس تاریخ سررسید تساوی را بشکن
     return direction * compareDates(a.dueDate, b.dueDate);
   });
 }

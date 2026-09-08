@@ -8,7 +8,6 @@ import type {
 export function searchTask(task: Task, searchQuery: string): boolean {
   const target = searchQuery.trim().toLowerCase();
 
-  // جست‌وجوی خالی به معنای نمایش تمام وظایف است
   if (target === "") return true;
 
   const title = task.title.toLowerCase();

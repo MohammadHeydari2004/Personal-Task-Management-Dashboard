@@ -54,3 +54,19 @@ export const PRIORITY_FILTER_OPTIONS: Array<{
   { value: "medium", label: PRIORITY_LABELS.medium },
   { value: "high", label: PRIORITY_LABELS.high },
 ];
+
+export const SORT_FIELD_OPTIONS: Array<{
+  value: SortField;
+  label: string;
+}> = [
+  { value: "dueDate", label: SORT_FIELD_LABELS.dueDate },
+  { value: "priority", label: SORT_FIELD_LABELS.priority },
+];
+
+export const SORT_ORDER_OPTIONS: Array<{
+  value: SortOrder;
+  label: string;
+}> = [
+  { value: "asc", label: SORT_ORDER_LABELS.asc },
+  { value: "desc", label: SORT_ORDER_LABELS.desc },
+];
