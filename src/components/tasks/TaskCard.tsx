@@ -4,12 +4,6 @@ import type { Priority, Task, TaskId, TaskStatus } from "../../types/task";
 import { isOverdue, shortFormatDate } from "../../utils/date";
 import { Badge, type BadgeProps } from "../ui/Badge";
 
-interface TaskCardProps {
-  task: Task;
-  onStatusChange: (id: TaskId, newStatus: TaskStatus) => void;
-  onDelete: (id: TaskId) => void;
-}
-
 const priorityVariant: Record<Priority, BadgeProps["variant"]> = {
   low: "gray",
   medium: "yellow",
@@ -22,7 +16,19 @@ const statusVariant: Record<TaskStatus, BadgeProps["variant"]> = {
   completed: "green",
 };
 
-export function TaskCard({ onDelete, onStatusChange, task }: TaskCardProps) {
+interface TaskCardProps {
+  task: Task;
+  onStatusChange: (id: TaskId, newStatus: TaskStatus) => void;
+  onDelete: (id: TaskId) => void;
+  onEdit: (id: TaskId) => void;
+}
+
+export function TaskCard({
+  onDelete,
+  onEdit, 
+  onStatusChange,
+  task,
+}: TaskCardProps) {
   const overdue = isOverdue(task);
 
   return (
@@ -67,6 +73,14 @@ export function TaskCard({ onDelete, onStatusChange, task }: TaskCardProps) {
             </option>
           ))}
         </select>
+
+        <button
+          type="button"
+          onClick={() => onEdit(task.id)}
+          className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 transition-colors hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+        >
+          ویرایش
+        </button>
 
         <button
           type="button"

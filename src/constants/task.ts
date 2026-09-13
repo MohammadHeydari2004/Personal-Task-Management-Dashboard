@@ -70,3 +70,21 @@ export const SORT_ORDER_OPTIONS: Array<{
   { value: "asc", label: SORT_ORDER_LABELS.asc },
   { value: "desc", label: SORT_ORDER_LABELS.desc },
 ];
+
+export const PRIORITY_OPTIONS: Array<{
+  value: Priority;
+  label: string;
+}> = [
+  { value: "low", label: PRIORITY_LABELS.low },
+  { value: "medium", label: PRIORITY_LABELS.medium },
+  { value: "high", label: PRIORITY_LABELS.high },
+];
+
+export const STATUS_OPTIONS: Array<{
+  value: TaskStatus;
+  label: string;
+}> = [
+  { value: "planned", label: STATUS_LABELS.planned },
+  { value: "in-progress", label: STATUS_LABELS["in-progress"] },
+  { value: "completed", label: STATUS_LABELS.completed },
+];

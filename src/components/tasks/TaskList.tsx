@@ -7,6 +7,7 @@ interface TaskListProps {
   tasks: Task[];
   onStatusChange: (id: TaskId, newStatus: TaskStatus) => void;
   onDelete: (id: TaskId) => void;
+  onEdit: (id: TaskId) => void; 
   emptyMessage: {
     title: string;
     description: string;
@@ -17,6 +18,7 @@ interface TaskListProps {
 export function TaskList({
   emptyMessage,
   onDelete,
+  onEdit, 
   onStatusChange,
   tasks,
 }: TaskListProps) {
@@ -35,6 +37,7 @@ export function TaskList({
             task={task}
             onStatusChange={onStatusChange}
             onDelete={onDelete}
+            onEdit={onEdit} 
           />
         </li>
       ))}

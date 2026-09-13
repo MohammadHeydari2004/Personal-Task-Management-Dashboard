@@ -1,11 +1,7 @@
 export type TaskId = string;
-
 export type Priority = "low" | "medium" | "high";
-
 export type TaskStatus = "planned" | "in-progress" | "completed";
-
 export type SortOrder = "asc" | "desc";
-
 export type SortField = "dueDate" | "priority";
 
 export interface Task {

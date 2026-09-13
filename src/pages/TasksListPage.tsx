@@ -1,16 +1,24 @@
+import { useState } from "react";
 import PageContainer from "../components/layout/PageContainer";
 import { TaskFilters } from "../components/tasks/TaskFilters";
 import { TaskList } from "../components/tasks/TaskList";
+import { TaskModal } from "../components/tasks/TaskModal"; 
 import { TaskSearchBar } from "../components/tasks/TaskSearchBar";
 import { TaskSortControl } from "../components/tasks/TaskSortControl";
 import { TaskStats } from "../components/tasks/TaskStats";
+import { Button } from "../components/ui/Button"; 
 import { useTask } from "../contexts/useTask";
 import { useTaskFilters } from "../hooks/useTaskFilters";
 import { useTaskStats } from "../hooks/useTaskStats";
-import type { TaskId } from "../types/task";
+import type { ModalState, TaskId } from "../types/task";
 
 function TasksListPage() {
   const { tasks, changeTaskStatus, deleteTask } = useTask();
+
+  const [modalState, setModalState] = useState<ModalState>({ mode: "closed" });
+  const openCreate = () => setModalState({ mode: "create" });
+  const openEdit = (taskId: TaskId) => setModalState({ mode: "edit", taskId });
+  const closeModal = () => setModalState({ mode: "closed" });
 
   const stats = useTaskStats(tasks);
 
@@ -36,10 +44,6 @@ function TasksListPage() {
     }
   };
 
-  const handleCreateTask = () => {
-    window.alert("مودال ایجاد وظیفه در فاز بعدی پیاده‌سازی می‌شود.");
-  };
-
   const isEmpty = tasks.length === 0;
 
   const emptyMessage = isEmpty
@@ -47,26 +51,18 @@ function TasksListPage() {
         title: "هنوز وظیفه‌ای ایجاد نکرده‌اید",
         description: "برای شروع، اولین وظیفه خود را ایجاد کنید.",
         action: (
-          <button
-            type="button"
-            onClick={handleCreateTask}
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-          >
+          <Button onClick={openCreate} variant="primary">
             + ایجاد وظیفه جدید
-          </button>
+          </Button>
         ),
       }
     : {
         title: "نتیجه‌ای یافت نشد",
         description: "هیچ وظیفه‌ای با فیلترهای انتخابی مطابقت ندارد.",
         action: (
-          <button
-            type="button"
-            onClick={resetFilters}
-            className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-          >
+          <Button onClick={resetFilters} variant="secondary">
             پاک کردن فیلترها
-          </button>
+          </Button>
         ),
       };
 
@@ -74,18 +70,14 @@ function TasksListPage() {
     <PageContainer>
       <header className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl font-bold text-gray-900">لیست وظایف</h1>
-        <button
-          type="button"
-          onClick={handleCreateTask}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-        >
+        <Button onClick={openCreate} variant="primary">
           + ایجاد وظیفه جدید
-        </button>
+        </Button>
       </header>
 
       <TaskStats stats={stats} />
 
-      <section className="mb-6 flex justify-evenly gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm ">
+      <section className="mb-6 grid grid-cols-1 gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:grid-cols-3">
         <TaskSearchBar value={searchQuery} onChange={setSearchQuery} />
         <TaskSortControl
           sortField={sortField}
@@ -105,10 +97,15 @@ function TasksListPage() {
 
       <TaskList
         tasks={filteredTasks}
-        emptyMessage={emptyMessage}
         onStatusChange={changeTaskStatus}
         onDelete={handleDelete}
+        onEdit={openEdit}
+        emptyMessage={emptyMessage}
       />
+
+      {modalState.mode !== "closed" && (
+        <TaskModal state={modalState} onClose={closeModal} />
+      )}
     </PageContainer>
   );
 }
