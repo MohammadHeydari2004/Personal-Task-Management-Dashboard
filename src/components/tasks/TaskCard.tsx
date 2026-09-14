@@ -25,7 +25,7 @@ interface TaskCardProps {
 
 export function TaskCard({
   onDelete,
-  onEdit, 
+  onEdit,
   onStatusChange,
   task,
 }: TaskCardProps) {
@@ -40,9 +40,7 @@ export function TaskCard({
         <h3>{task.title}</h3>
       </Link>
 
-      <p className="mt-2 line-clamp-2 text-sm text-gray-600">
-        {task.description}
-      </p>
+      <p className="mt-2  text-sm text-gray-600 truncate">{task.description}</p>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <Badge variant={priorityVariant[task.priority]}>
@@ -58,17 +56,17 @@ export function TaskCard({
         سررسید: {shortFormatDate(task.dueDate)}
       </p>
 
-      <div className="mt-4 flex items-center justify-between gap-2 border-t border-gray-100 pt-3">
+      <div className="mt-4 flex items-center gap-4 border-t border-gray-100 pt-3">
         <select
           value={task.status}
           onChange={(e) =>
             onStatusChange(task.id, e.target.value as TaskStatus)
           }
           aria-label={`تغییر وضعیت وظیفه: ${task.title}`}
-          className="rounded-md border border-gray-300 bg-white px-2 py-1.5 text-xs text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          className="rounded-md border border-gray-300 bg-white px-2 py-2.5 text-xs text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
         >
           {Object.entries(STATUS_LABELS).map(([value, label]) => (
-            <option key={value} value={value}>
+            <option key={value} value={value} className="p-2">
               {label}
             </option>
           ))}

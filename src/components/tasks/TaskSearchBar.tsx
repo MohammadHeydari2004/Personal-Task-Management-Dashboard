@@ -25,7 +25,7 @@ export function TaskSearchBar({ value, onChange }: TaskSearchBarProps) {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="جست‌وجو در عنوان و توضیحات..."
-          className="w-full rounded-md border border-gray-300 bg-white py-2 pe-3 ps-10 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          className="w-full rounded-md border border-gray-300 bg-white py-2 pe-3 ps-10 text-md text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 placeholder:font-semibold placeholder:text-[0.8rem]"
         />
       </div>
     </div>

@@ -22,7 +22,7 @@ export function TaskFilters({
   onReset,
 }: TaskFiltersProps) {
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
+    <div className="flex flex-col gap-4 justify-evenly lg:flex-row ">
       <div className="flex flex-col gap-1">
         <label
           htmlFor="status-filter"
@@ -34,10 +34,10 @@ export function TaskFilters({
           id="status-filter"
           value={statusFilter}
           onChange={(e) => onStatusChange(e.target.value as StatusFilter)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:w-40"
+          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
         >
           {STATUS_FILTER_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option key={option.value} value={option.value} className="p-2">
               {option.label}
             </option>
           ))}
@@ -55,10 +55,10 @@ export function TaskFilters({
           id="priority-filter"
           value={priorityFilter}
           onChange={(e) => onPriorityChange(e.target.value as PriorityFilter)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:w-40"
+          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
         >
           {PRIORITY_FILTER_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option key={option.value} value={option.value} className="p-2">
               {option.label}
             </option>
           ))}

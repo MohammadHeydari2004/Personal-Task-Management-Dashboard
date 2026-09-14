@@ -46,7 +46,7 @@ export function Select<T extends string>({
         .join(" ")}
     >
       {options.map((item) => (
-        <option key={item.value} value={item.value}>
+        <option key={item.value} value={item.value} className="p-2 truncate">
           {item.label}
         </option>
       ))}

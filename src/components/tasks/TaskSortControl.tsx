@@ -15,7 +15,7 @@ export function TaskSortControl({
   sortOrder,
 }: TaskSortControlProps) {
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
+    <div className="flex flex-col gap-5 lg:flex-row ">
       <div className="flex flex-col gap-1">
         <label
           htmlFor="sort-field"
@@ -27,10 +27,10 @@ export function TaskSortControl({
           id="sort-field"
           value={sortField}
           onChange={(e) => onFieldChange(e.target.value as SortField)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:w-44"
+          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
         >
           {SORT_FIELD_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option key={option.value} value={option.value} className="p-2">
               {option.label}
             </option>
           ))}
@@ -48,10 +48,10 @@ export function TaskSortControl({
           id="sort-order"
           value={sortOrder}
           onChange={(e) => onOrderChange(e.target.value as SortOrder)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:w-32"
+          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
         >
           {SORT_ORDER_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option key={option.value} value={option.value} className="p-2">
               {option.label}
             </option>
           ))}

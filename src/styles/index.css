@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@layer components {
+  select,
+  ::picker(select) {
+    appearance: base-select;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  select:open::picker-icon {
+    transition: 0.4s rotate;
+    rotate: -180deg;
+  }
+
+  ::picker(select) {
+    border: 2px solid rgb(0, 60, 255);
+    padding: 0.4rem;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 6px 15px oklch(0% 0 0 / 0.2);
+  }
+}

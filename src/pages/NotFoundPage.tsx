@@ -4,9 +4,17 @@ import PageContainer from "../components/layout/PageContainer";
 function NotFoundPage() {
   return (
     <PageContainer>
-      <section className="flex flex-col items-center justify-center py-16 text-center">
-        <h2 className="mb-4 text-6xl font-bold text-gray-300">۴۰۴</h2>
-        <h3 className="mb-2 text-2xl font-bold">صفحه یافت نشد</h3>
+      <section
+        aria-labelledby="not-found-title"
+        className="flex flex-col items-center justify-center py-16 text-center"
+      >
+        <h1
+          id="not-found-title"
+          className="mb-4 text-6xl font-bold text-gray-300"
+        >
+          ۴۰۴
+        </h1>
+        <h2 className="mb-2 text-2xl font-bold">صفحه یافت نشد</h2>
         <p className="mb-6 text-gray-600">
           آدرس یا لینک مورد نظر شما در سیستم موجود نیست.
         </p>

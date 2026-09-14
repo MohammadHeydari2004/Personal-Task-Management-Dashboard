@@ -2,11 +2,11 @@ import { useState } from "react";
 import PageContainer from "../components/layout/PageContainer";
 import { TaskFilters } from "../components/tasks/TaskFilters";
 import { TaskList } from "../components/tasks/TaskList";
-import { TaskModal } from "../components/tasks/TaskModal"; 
+import { TaskModal } from "../components/tasks/TaskModal";
 import { TaskSearchBar } from "../components/tasks/TaskSearchBar";
 import { TaskSortControl } from "../components/tasks/TaskSortControl";
 import { TaskStats } from "../components/tasks/TaskStats";
-import { Button } from "../components/ui/Button"; 
+import { Button } from "../components/ui/Button";
 import { useTask } from "../contexts/useTask";
 import { useTaskFilters } from "../hooks/useTaskFilters";
 import { useTaskStats } from "../hooks/useTaskStats";
@@ -77,22 +77,24 @@ function TasksListPage() {
 
       <TaskStats stats={stats} />
 
-      <section className="mb-6 grid grid-cols-1 gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:grid-cols-3">
-        <TaskSearchBar value={searchQuery} onChange={setSearchQuery} />
-        <TaskSortControl
-          sortField={sortField}
-          sortOrder={sortOrder}
-          onFieldChange={setSortField}
-          onOrderChange={setSortOrder}
-        />
-        <TaskFilters
-          statusFilter={statusFilter}
-          priorityFilter={priorityFilter}
-          onStatusChange={setStatusFilter}
-          onPriorityChange={setPriorityFilter}
-          hasActiveFilters={hasActiveFilters}
-          onReset={resetFilters}
-        />
+      <section className="mb-6 flex rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-col flex-1 lg:flex-row gap-8">
+          <TaskSearchBar value={searchQuery} onChange={setSearchQuery} />
+          <TaskSortControl
+            sortField={sortField}
+            sortOrder={sortOrder}
+            onFieldChange={setSortField}
+            onOrderChange={setSortOrder}
+          />
+          <TaskFilters
+            statusFilter={statusFilter}
+            priorityFilter={priorityFilter}
+            onStatusChange={setStatusFilter}
+            onPriorityChange={setPriorityFilter}
+            hasActiveFilters={hasActiveFilters}
+            onReset={resetFilters}
+          />
+        </div>
       </section>
 
       <TaskList

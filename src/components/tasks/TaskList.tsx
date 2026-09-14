@@ -7,7 +7,7 @@ interface TaskListProps {
   tasks: Task[];
   onStatusChange: (id: TaskId, newStatus: TaskStatus) => void;
   onDelete: (id: TaskId) => void;
-  onEdit: (id: TaskId) => void; 
+  onEdit: (id: TaskId) => void;
   emptyMessage: {
     title: string;
     description: string;
@@ -18,7 +18,7 @@ interface TaskListProps {
 export function TaskList({
   emptyMessage,
   onDelete,
-  onEdit, 
+  onEdit,
   onStatusChange,
   tasks,
 }: TaskListProps) {
@@ -29,7 +29,7 @@ export function TaskList({
   return (
     <ul
       aria-label="لیست وظایف"
-      className="grid grid-cols-1 gap-4 lg:grid-cols-2"
+      className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
     >
       {tasks.map((task) => (
         <li key={task.id}>
@@ -37,7 +37,7 @@ export function TaskList({
             task={task}
             onStatusChange={onStatusChange}
             onDelete={onDelete}
-            onEdit={onEdit} 
+            onEdit={onEdit}
           />
         </li>
       ))}
