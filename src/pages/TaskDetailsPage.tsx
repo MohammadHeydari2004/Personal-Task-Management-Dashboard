@@ -36,7 +36,6 @@ function TaskDetailsPage() {
   const task = taskId ? getTaskById(taskId) : undefined;
   const overdue = task ? isOverdue(task) : false;
 
-  // حالت NotFound
   if (!task) {
     return (
       <PageContainer>
@@ -70,19 +69,26 @@ function TaskDetailsPage() {
 
   return (
     <PageContainer>
-      <article className="space-y-6">
+      <article className="mx-auto max-w-2xl lg:max-w-3xl xl:max-w-4xl">
         {/* دکمه بازگشت */}
-        <Button onClick={() => navigate("/")} variant="ghost" size="sm">
+        <Button
+          onClick={() => navigate("/")}
+          variant="ghost"
+          size="sm"
+          className="mb-4 sm:mb-6"
+        >
           → بازگشت به لیست
         </Button>
 
         {/* عنوان */}
-        <header>
-          <h1 className="text-3xl font-bold text-gray-900">{task.title}</h1>
+        <header className="mb-4 sm:mb-6">
+          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl lg:text-3xl dark:text-gray-100">
+            {task.title}
+          </h1>
         </header>
 
-        {/* Badge ها */}
-        <div className="flex flex-wrap items-center gap-2">
+        {/* بج‌ها */}
+        <div className="mb-4 flex flex-wrap items-center gap-1.5 sm:mb-5 sm:gap-2">
           <Badge variant={priorityVariant[task.priority]}>
             اولویت: {PRIORITY_LABELS[task.priority]}
           </Badge>
@@ -93,18 +99,24 @@ function TaskDetailsPage() {
         </div>
 
         {/* تاریخ‌ها */}
-        <dl className="grid grid-cols-1 gap-3 rounded-lg bg-gray-50 p-4 sm:grid-cols-2">
+        <dl className="mb-4 grid grid-cols-1 gap-3 rounded-xl bg-gray-50 p-4 sm:grid-cols-2 sm:gap-4 sm:p-5 dark:bg-gray-900 dark:border dark:border-gray-800">
           <div>
-            <dt className="text-xs font-medium text-gray-500">تاریخ ایجاد</dt>
-            <dd className="mt-1 text-sm text-gray-900">
+            <dt className="text-[0.7rem] font-medium text-gray-500 sm:text-xs dark:text-gray-400">
+              تاریخ ایجاد
+            </dt>
+            <dd className="mt-0.5 text-xs text-gray-900 sm:mt-1 sm:text-sm dark:text-gray-100">
               {formatDate(task.creationDate)}
             </dd>
           </div>
           <div>
-            <dt className="text-xs font-medium text-gray-500">تاریخ سررسید</dt>
+            <dt className="text-[0.7rem] font-medium text-gray-500 sm:text-xs dark:text-gray-400">
+              تاریخ سررسید
+            </dt>
             <dd
-              className={`mt-1 text-sm ${
-                overdue ? "font-semibold text-red-600" : "text-gray-900"
+              className={`mt-0.5 text-xs sm:mt-1 sm:text-sm dark:text-gray-100 ${
+                overdue
+                  ? "font-semibold text-red-600 dark:text-red-400"
+                  : "text-gray-900"
               }`}
             >
               {formatDate(task.dueDate)}
@@ -113,19 +125,21 @@ function TaskDetailsPage() {
         </dl>
 
         {/* توضیحات */}
-        <section>
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">توضیحات</h2>
-          <p className="whitespace-pre-wrap text-sm leading-relaxed text-gray-700">
+        <section className="mb-5 sm:mb-6">
+          <h2 className="mb-2 text-sm font-semibold text-gray-900 sm:text-base dark:text-gray-100">
+            توضیحات
+          </h2>
+          <p className="whitespace-pre-wrap text-xs leading-relaxed text-gray-700 sm:text-sm dark:text-gray-300">
             {task.description || "توضیحاتی برای این وظیفه ثبت نشده است."}
           </p>
         </section>
 
         {/* عملیات */}
-        <section className="space-y-4 border-t border-gray-200 pt-6">
-          <div className="flex flex-col gap-2">
+        <section className="space-y-4 border-t border-gray-200 pt-5 dark:border-gray-800 sm:pt-6">
+          <div className="flex flex-col gap-1.5">
             <label
               htmlFor="status-change"
-              className="text-sm font-medium text-gray-700"
+              className="text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-300"
             >
               تغییر وضعیت
             </label>
@@ -138,11 +152,21 @@ function TaskDetailsPage() {
             />
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <Button onClick={() => setIsEditOpen(true)} variant="primary">
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:gap-3">
+            <Button
+              onClick={() => setIsEditOpen(true)}
+              variant="primary"
+              size="md"
+              className="w-full sm:w-auto"
+            >
               ویرایش وظیفه
             </Button>
-            <Button onClick={handleDelete} variant="danger">
+            <Button
+              onClick={handleDelete}
+              variant="danger"
+              size="md"
+              className="w-full sm:w-auto"
+            >
               حذف وظیفه
             </Button>
           </div>

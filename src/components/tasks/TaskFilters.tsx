@@ -22,11 +22,11 @@ export function TaskFilters({
   onReset,
 }: TaskFiltersProps) {
   return (
-    <div className="flex flex-col gap-4 justify-evenly lg:flex-row ">
-      <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
+      <div className="flex flex-1 flex-col gap-1.5">
         <label
           htmlFor="status-filter"
-          className="text-sm font-medium text-gray-700"
+          className="text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-300"
         >
           وضعیت
         </label>
@@ -34,20 +34,20 @@ export function TaskFilters({
           id="status-filter"
           value={statusFilter}
           onChange={(e) => onStatusChange(e.target.value as StatusFilter)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:focus:border-blue-500"
         >
           {STATUS_FILTER_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value} className="p-2">
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-1 flex-col gap-1.5">
         <label
           htmlFor="priority-filter"
-          className="text-sm font-medium text-gray-700"
+          className="text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-300"
         >
           اولویت
         </label>
@@ -55,10 +55,10 @@ export function TaskFilters({
           id="priority-filter"
           value={priorityFilter}
           onChange={(e) => onPriorityChange(e.target.value as PriorityFilter)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:focus:border-blue-500"
         >
           {PRIORITY_FILTER_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value} className="p-2">
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
@@ -69,7 +69,7 @@ export function TaskFilters({
         <button
           type="button"
           onClick={onReset}
-          className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 sm:w-auto"
+          className="shrink-0 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
         >
           پاک کردن فیلترها
         </button>

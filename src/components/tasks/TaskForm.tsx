@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PRIORITY_OPTIONS, STATUS_OPTIONS } from "../../constants/task"; // تغییر import
+import { PRIORITY_OPTIONS, STATUS_OPTIONS } from "../../constants/task";
 import type { Priority, TaskFormData, TaskStatus } from "../../types/task";
 import { Button } from "../ui/Button";
 import { Field } from "../ui/Field";
@@ -71,9 +71,16 @@ export function TaskForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
       <Field id="title" label="عنوان" required error={errors.title}>
-        <Input id="title" value={title} onChange={setTitle} required />
+        <Input
+          id="title"
+          value={title}
+          onChange={setTitle}
+          placeholder="عنوان وظیفه را وارد کنید"
+          required
+          error={errors.title}
+        />
       </Field>
 
       <Field id="description" label="توضیحات">
@@ -81,11 +88,12 @@ export function TaskForm({
           id="description"
           value={description}
           onChange={setDescription}
+          placeholder="توضیحات وظیفه را وارد کنید..."
           rows={3}
         />
       </Field>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4">
         <Field id="priority" label="اولویت" required>
           <Select<Priority>
             id="priority"
@@ -112,18 +120,19 @@ export function TaskForm({
           value={dueDate}
           onChange={setDueDate}
           required
+          error={errors.dueDate}
         />
       </Field>
 
-      <div className="flex items-center justify-between pt-4 border-t">
+      <div className="flex flex-col-reverse gap-3 border-t border-gray-200 pt-4 sm:flex-row sm:items-center sm:justify-between dark:border-gray-800">
         {onDelete ? (
-          <Button type="button" variant="danger" onClick={onDelete}>
+          <Button type="button" variant="danger" size="sm" onClick={onDelete}>
             حذف
           </Button>
         ) : (
           <div />
         )}
-        <div className="flex gap-2">
+        <div className="flex flex-col-reverse gap-2 sm:flex-row sm:gap-3">
           <Button type="button" variant="secondary" onClick={onCancel}>
             لغو
           </Button>

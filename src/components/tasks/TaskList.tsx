@@ -27,20 +27,31 @@ export function TaskList({
   }
 
   return (
-    <ul
-      aria-label="لیست وظایف"
-      className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
-    >
-      {tasks.map((task) => (
-        <li key={task.id}>
-          <TaskCard
-            task={task}
-            onStatusChange={onStatusChange}
-            onDelete={onDelete}
-            onEdit={onEdit}
-          />
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul
+        aria-label="لیست وظایف"
+        className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:gap-5 xl:grid-cols-2 2xl:grid-cols-3"
+      >
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <TaskCard
+              task={task}
+              onStatusChange={onStatusChange}
+              onDelete={onDelete}
+              onEdit={onEdit}
+            />
+          </li>
+        ))}
+      </ul>
+      <div className="flex justify-center items-center mt-6 mb-2 py-4">
+        {/* لینک پرش به محتوا - فقط در حالت فوکوس نمایش داده می‌شود */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg"
+        >
+          پرش به محتوای اصلی
+        </a>
+      </div>
+    </div>
   );
 }

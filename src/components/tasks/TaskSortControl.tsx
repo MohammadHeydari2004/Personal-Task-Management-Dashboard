@@ -15,11 +15,11 @@ export function TaskSortControl({
   sortOrder,
 }: TaskSortControlProps) {
   return (
-    <div className="flex flex-col gap-5 lg:flex-row ">
-      <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
+      <div className="flex flex-1 flex-col gap-1.5">
         <label
           htmlFor="sort-field"
-          className="text-sm font-medium text-gray-700"
+          className="text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-300"
         >
           مرتب‌سازی بر اساس
         </label>
@@ -27,20 +27,20 @@ export function TaskSortControl({
           id="sort-field"
           value={sortField}
           onChange={(e) => onFieldChange(e.target.value as SortField)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:focus:border-blue-500"
         >
           {SORT_FIELD_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value} className="p-2">
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-1 flex-col gap-1.5">
         <label
           htmlFor="sort-order"
-          className="text-sm font-medium text-gray-700"
+          className="text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-300"
         >
           جهت مرتب‌سازی
         </label>
@@ -48,10 +48,10 @@ export function TaskSortControl({
           id="sort-order"
           value={sortOrder}
           onChange={(e) => onOrderChange(e.target.value as SortOrder)}
-          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 "
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:focus:border-blue-500"
         >
           {SORT_ORDER_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value} className="p-2">
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}

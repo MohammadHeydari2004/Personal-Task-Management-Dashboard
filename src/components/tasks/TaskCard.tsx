@@ -32,17 +32,22 @@ export function TaskCard({
   const overdue = isOverdue(task);
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900 sm:p-5">
+      {/* عنوان */}
       <Link
         to={`/tasks/${task.id}`}
-        className="block text-lg font-semibold text-blue-600 hover:text-blue-800 hover:underline"
+        className="block text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800 hover:underline focus:outline-none focus:ring-2 focus:p-1 focus:ring-blue-500/40 sm:text-base dark:text-blue-400 dark:hover:text-blue-300 dark:focus:ring-offset-gray-900"
       >
-        <h3>{task.title}</h3>
+        <h3 className="truncate">{task.title}</h3>
       </Link>
 
-      <p className="mt-2  text-sm text-gray-600 truncate">{task.description}</p>
+      {/* توضیحات */}
+      <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-gray-600 sm:mt-2 sm:text-sm dark:text-gray-400">
+        {task.description}
+      </p>
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      {/* بج‌ها */}
+      <div className="mt-2.5 flex flex-wrap items-center gap-1.5 sm:mt-3 sm:gap-2">
         <Badge variant={priorityVariant[task.priority]}>
           {PRIORITY_LABELS[task.priority]}
         </Badge>
@@ -52,41 +57,46 @@ export function TaskCard({
         {overdue && <Badge variant="red">⚠️ عقب‌افتاده</Badge>}
       </div>
 
-      <p className="mt-3 text-xs text-gray-500">
+      {/* تاریخ سررسید */}
+      <p
+        className={`mt-2.5 text-[0.7rem] sm:mt-3 sm:text-xs ${overdue ? "font-semibold text-red-600 dark:text-red-400" : "text-gray-500 dark:text-gray-500"}`}
+      >
         سررسید: {shortFormatDate(task.dueDate)}
       </p>
 
-      <div className="mt-4 flex items-center gap-4 border-t border-gray-100 pt-3">
+      {/* عملیات */}
+      <div className="mt-3 flex items-center justify-between gap-2 border-t border-gray-100 pt-3 sm:mt-4 sm:pt-3.5 dark:border-gray-800">
         <select
           value={task.status}
           onChange={(e) =>
             onStatusChange(task.id, e.target.value as TaskStatus)
           }
           aria-label={`تغییر وضعیت وظیفه: ${task.title}`}
-          className="rounded-md border border-gray-300 bg-white px-2 py-2.5 text-xs text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          className="rounded-lg border border-gray-300 bg-white px-2 py-2 text-[0.7rem] text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 sm:text-xs"
         >
           {Object.entries(STATUS_LABELS).map(([value, label]) => (
-            <option key={value} value={value} className="p-2">
+            <option key={value} value={value}>
               {label}
             </option>
           ))}
         </select>
 
-        <button
-          type="button"
-          onClick={() => onEdit(task.id)}
-          className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 transition-colors hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-        >
-          ویرایش
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onDelete(task.id)}
-          className="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-700 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-        >
-          حذف
-        </button>
+        <div className="flex gap-1.5 sm:gap-2">
+          <button
+            type="button"
+            onClick={() => onEdit(task.id)}
+            className="rounded-lg border border-blue-200 bg-blue-50 px-2.5 py-1.5 text-[0.7rem] font-medium text-blue-700 transition-colors hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500/40 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400 dark:hover:bg-blue-950 sm:px-3 sm:text-xs"
+          >
+            ویرایش
+          </button>
+          <button
+            type="button"
+            onClick={() => onDelete(task.id)}
+            className="rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-[0.7rem] font-medium text-red-700 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500/40 dark:border-red-800 dark:bg-red-950/50 dark:text-red-400 dark:hover:bg-red-950 sm:px-3 sm:text-xs"
+          >
+            حذف
+          </button>
+        </div>
       </div>
     </div>
   );

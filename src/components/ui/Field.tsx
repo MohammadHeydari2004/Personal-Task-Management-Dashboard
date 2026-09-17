@@ -19,14 +19,32 @@ export function Field({
 }: FieldProps) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-medium text-gray-700">
+      <label
+        htmlFor={id}
+        className="text-xs font-medium text-gray-700 sm:text-sm dark:text-gray-300"
+      >
         {label}
-        {required && <span className="text-red-500 mr-1">*</span>}
+        {required && (
+          <span
+            className="mr-0.5 text-red-500 dark:text-red-400"
+            aria-hidden="true"
+          >
+            *
+          </span>
+        )}
       </label>
       {children}
-      {hint && !error && <p className="text-xs text-gray-500">{hint}</p>}
+      {hint && !error && (
+        <p className="text-[0.7rem] text-gray-500 sm:text-xs dark:text-gray-500">
+          {hint}
+        </p>
+      )}
       {error && (
-        <p id={`${id}-error`} className="text-xs text-red-600" role="alert">
+        <p
+          id={`${id}-error`}
+          className="text-[0.7rem] font-medium text-red-600 sm:text-xs dark:text-red-400"
+          role="alert"
+        >
           {error}
         </p>
       )}
