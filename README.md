@@ -64,6 +64,8 @@
 
 ## 📦 ساختار پروژه
 
+<div dir="ltr">
+
 ```
 src/
 ├── components/ # کامپوننت‌های رابط کاربری
@@ -125,6 +127,8 @@ src/
 └── vite-env.d.ts # تعاریف محیطی Vite
 ```
 
+</div>
+
 ---
 
 ## 🏗 معماری داده‌ها
@@ -147,6 +151,8 @@ src/
 
 ### نصب و اجرا
 
+<div dir="ltr">
+
 ```bash
 # کلون کردن مخزن
 git clone <repository-url>
@@ -167,7 +173,7 @@ npm run build
 npm run preview
 ```
 
----
+</div>
 
 ## 📋 دستورات موجود
 
